@@ -98,10 +98,14 @@ namespace alpaka
         {
         public:
             //-----------------------------------------------------------------------------
+            //! \param bBusyWaiting Unused. EventCpu never does busy waiting.
             EventCpu(
-                dev::DevCpu const & dev) :
+                dev::DevCpu const & dev,
+                bool bBusyWait = true) :
                     m_spEventImpl(std::make_shared<cpu::detail::EventCpuImpl>(dev))
-            {}
+            { 
+                alpaka::ignore_unused(bBusyWait);
+            }
             //-----------------------------------------------------------------------------
             EventCpu(EventCpu const &) = default;
             //-----------------------------------------------------------------------------
